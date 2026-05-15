@@ -1,0 +1,70 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build image
+        run: |
+          docker build \
+            --no-cache \
+            -t ghcr.io/matteo-nossro/sakura-order:latest \
+            -t ghcr.io/matteo-nossro/sakura-order:${{ github.sha }} \
+            .
+
+      - name: Push to GHCR
+        run: |
+          docker push ghcr.io/matteo-nossro/sakura-order:latest
+          docker push ghcr.io/matteo-nossro/sakura-order:${{ github.sha }}
+
+      - name: Deploy via Portainer API
+        run: |
+          set -e
+
+          STACK_ID=$(curl -sk \
+            -H "X-API-Key: ${{ secrets.PORTAINER_TOKEN }}" \
+            "${{ secrets.PORTAINER_URL }}/api/stacks" | \
+            jq -r '.[] | select(.Name=="sakura-order") | .Id')
+
+          STACK_CONTENT=$(jq -Rs . < docker-compose.yml)
+
+          if [ -z "$STACK_ID" ] || [ "$STACK_ID" = "null" ]; then
+            echo "Stack inexistante → création"
+            curl -sk -X POST \
+              -H "X-API-Key: ${{ secrets.PORTAINER_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{\"name\":\"sakura-order\",\"stackFileContent\":$STACK_CONTENT}" \
+              "${{ secrets.PORTAINER_URL }}/api/stacks/create/standalone/string?endpointId=1"
+            echo ""
+            echo "::warning::Stack créée. Configure les variables d'environnement dans Portainer puis clique Update."
+          else
+            echo "Stack existante (ID=$STACK_ID) → mise à jour"
+
+            EXISTING_ENV=$(curl -sk \
+              -H "X-API-Key: ${{ secrets.PORTAINER_TOKEN }}" \
+              "${{ secrets.PORTAINER_URL }}/api/stacks/$STACK_ID" | jq -c '.Env // []')
+
+            curl -sk -X PUT \
+              -H "X-API-Key: ${{ secrets.PORTAINER_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{\"pullImage\":false,\"prune\":false,\"stackFileContent\":$STACK_CONTENT,\"env\":$EXISTING_ENV}" \
+              "${{ secrets.PORTAINER_URL }}/api/stacks/$STACK_ID?endpointId=1"
+          fi
+
+      - name: Cleanup
+        if: always()
+        run: docker image prune -f

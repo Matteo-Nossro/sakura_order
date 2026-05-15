@@ -1,0 +1,23 @@
+services:
+  app:
+    image: ghcr.io/matteo-nossro/sakura-order:latest
+    pull_policy: never
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      HOST: "0.0.0.0"
+      PORT: "3000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      start_period: 15s
+      retries: 3
+    networks:
+      - sakura-order-network
+
+networks:
+  sakura-order-network:
+    driver: bridge
