@@ -1,0 +1,17 @@
+{
+  "name": "Sakura Order",
+  "short_name": "Sakura",
+  "description": "Commander en groupe dans un buffet japonais à volonté",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f0e8",
+  "theme_color": "#c0392b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -X POST http://localhost:3000/api/session/3A2D5B19/join -H \"Content-Type: application/json\" -d \"{\\\\\"name\\\\\":\\\\\"Bob\\\\\"}\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/session/3A2D5B19/order -H \"Content-Type: application/json\" -d \"{\\\\\"memberId\\\\\":\\\\\"A800A6F7\\\\\",\\\\\"items\\\\\":[{\\\\\"menuItemId\\\\\":\\\\\"52\\\\\",\\\\\"quantity\\\\\":2},{\\\\\"menuItemId\\\\\":\\\\\"16\\\\\",\\\\\"quantity\\\\\":1}]}\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/session/3A2D5B19/confirm -H \"Content-Type: application/json\" -d \"{\\\\\"memberId\\\\\":\\\\\"A800A6F7\\\\\"}\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/session/3A2D5B19/confirm -H \"Content-Type: application/json\" -d \"{\\\\\"memberId\\\\\":\\\\\"2EEF7DA8\\\\\"}\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/session/3A2D5B19/next-round -H \"Content-Type: application/json\" -d \"{\\\\\"memberId\\\\\":\\\\\"A800A6F7\\\\\"}\")",
+      "Bash(curl -s http://localhost:3000/api/session/3A2D5B19/state)",
+      "Bash(cd /d d:\\\\projet_perso_dev\\\\sakura_order)",
+      "Bash(Get-ChildItem -Recurse -Depth 3)",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}
