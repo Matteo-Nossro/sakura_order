@@ -50,9 +50,9 @@ function joinTable() {
           letter-spacing: 0.06em;
           margin-bottom: 6px;
         "
-      >Sakura Order</h1>
+      >Sakura</h1>
       <p style="font-size: 0.95rem; color: #7a6a5a; font-style: italic">
-        Commander ensemble, savourer ensemble
+        Ensemble pour se péter le bide
       </p>
     </div>
 
