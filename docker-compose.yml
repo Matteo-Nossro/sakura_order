@@ -1,5 +1,6 @@
 services:
   app:
+    build: .
     image: ghcr.io/matteo-nossro/sakura-order:latest
     pull_policy: never
     restart: unless-stopped
