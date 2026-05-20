@@ -2,11 +2,16 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
+  routeRules: {
+    '/dishes/**': { headers: { 'cache-control': 'public, max-age=3600, must-revalidate' } },
+  },
   app: {
     head: {
       title: 'Sakura Order',
       link: [
         { rel: 'manifest', href: '/manifest.json' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/icon.svg' },
+        { rel: 'apple-touch-icon', href: '/icon.svg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'stylesheet',

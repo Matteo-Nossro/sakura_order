@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="38%" cy="30%" r="72%">
+      <stop offset="0%" stop-color="#d9433a"/>
+      <stop offset="100%" stop-color="#8c1a13"/>
+    </radialGradient>
+    <radialGradient id="center-grad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#f0c040"/>
+      <stop offset="100%" stop-color="#c08020"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+
+  <!-- Subtle top highlight for depth -->
+  <ellipse cx="256" cy="160" rx="210" ry="110" fill="rgba(255,255,255,0.05)"/>
+
+  <!-- Sakura flower — one petal pointing up (rotate -90°) -->
+  <!-- Petals computed with r=90, cx=256, cy=256 using the app's petal algorithm -->
+  <g transform="rotate(-90 256 256)" fill="rgba(255,246,238,0.93)" stroke="rgba(255,205,180,0.22)" stroke-width="0.8">
+    <!-- Petal 0° -->
+    <path d="M 256,256 C 303.4,230.1 335.2,256 355,256 C 335.2,256 303.4,281.9 256,256"/>
+    <!-- Petal 72° -->
+    <path d="M 256,256 C 295.0,293.4 280.5,331.4 286.6,350.2 C 280.5,331.4 245.3,308.9 256,256"/>
+    <!-- Petal 144° -->
+    <path d="M 256,256 C 232.5,304.6 191.9,302.6 175.9,314.2 C 191.9,302.6 202.4,262.2 256,256"/>
+    <!-- Petal 216° -->
+    <path d="M 256,256 C 202.4,249.8 191.9,209.4 175.9,197.8 C 191.9,209.4 232.5,207.4 256,256"/>
+    <!-- Petal 288° -->
+    <path d="M 256,256 C 245.3,203.1 280.5,180.6 286.6,161.8 C 280.5,180.6 294.95,218.6 256,256"/>
+
+    <!-- Stamen dots (r=36 from center, one per petal) -->
+    <circle cx="292"   cy="256"   r="5" fill="rgba(255,218,120,0.85)"/>
+    <circle cx="267.1" cy="290.2" r="5" fill="rgba(255,218,120,0.85)"/>
+    <circle cx="227.0" cy="277.2" r="5" fill="rgba(255,218,120,0.85)"/>
+    <circle cx="227.0" cy="234.8" r="5" fill="rgba(255,218,120,0.85)"/>
+    <circle cx="267.1" cy="221.8" r="5" fill="rgba(255,218,120,0.85)"/>
+  </g>
+
+  <!-- Gold center -->
+  <circle cx="256" cy="256" r="22" fill="url(#center-grad)"/>
+  <!-- Center highlight -->
+  <circle cx="249" cy="248" r="8" fill="rgba(255,230,100,0.42)"/>
+</svg>
