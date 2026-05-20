@@ -9,7 +9,9 @@
       "Bash(curl -s http://localhost:3000/api/session/3A2D5B19/state)",
       "Bash(cd /d d:\\\\projet_perso_dev\\\\sakura_order)",
       "Bash(Get-ChildItem -Recurse -Depth 3)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(dir \"d:\\\\projet_perso_dev\\\\sakura_order\\\\public\\\\dishes\")",
+      "WebFetch(domain:sakurachenove.fr)"
     ]
   }
 }

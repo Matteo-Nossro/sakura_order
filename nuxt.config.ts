@@ -10,8 +10,9 @@ export default defineNuxtConfig({
       title: 'Sakura Order',
       link: [
         { rel: 'manifest', href: '/manifest.json' },
+        { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/icon-512.png' },
         { rel: 'icon', type: 'image/svg+xml', href: '/icon.svg' },
-        { rel: 'apple-touch-icon', href: '/icon.svg' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'stylesheet',
